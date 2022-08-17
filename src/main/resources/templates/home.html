@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Todo</title>
+    <link href="/dist/output.css" rel="stylesheet"/>
+</head>
+<body class="h-screen w-full">
+    <div class="pt-52">
+        <div id="myProgress" class="w-1/2 h-min  border border-8 border-primary mx-auto">
+            <div id="myBar" class="w-0 h-8 bg-primary"></div>
+        </div>
+    </div>
+    <br>
+    <div id="fruits" class="space-y-2">
+        <div class="w-1/2 flex items-center justify-center mx-auto space-x-2">
+            <input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>
+            <input type="text" placeholder="Todo"
+                   class="shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none">
+        </div>
+        <div class="w-1/2 flex items-center justify-center mx-auto space-x-2">
+            <input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>
+            <input type="text" placeholder="Todo"
+                   class="shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none">
+        </div>
+        <div class="w-1/2 flex items-center justify-center mx-auto space-x-2">
+            <input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>
+            <input type="text" placeholder="Todo"
+                   class="shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none">
+        </div>
+        <div class="w-1/2 flex items-center justify-center mx-auto space-x-2">
+            <input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>
+            <input type="text" placeholder="Todo"
+                   class="shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none">
+        </div>
+        <div class="w-1/2 flex items-center justify-center mx-auto space-x-2">
+            <input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>
+            <input type="text" placeholder="Todo"
+                   class="shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none">
+        </div>
+    </div>
+    <button class="w-1/2 flex items-center justify-center mx-auto bg-primary my-2" onclick="submit()">Add Todo</button>
+</body>
+<script>
+
+    function update() {
+        var checked = 0;
+        var myBar = document.getElementById("myBar");
+        //Reference the Form.
+        var fruits = document.getElementById("fruits");
+
+        //Reference all the CheckBoxes in Table.
+        boxes = fruits.querySelectorAll("input[type='checkbox']:checked");
+        checked = boxes.length
+        console.log("Checked boxes " + checked);
+        box = fruits.querySelectorAll("input[type='checkbox']");
+        numCheckboxes = box.length
+        console.log("Not checked now " + numCheckboxes);
+
+        myBar.style.width = ((checked / numCheckboxes) * 100) + "%";
+        return true;
+    }
+
+    function submit() {
+        var card = document.createElement("div");
+        card.className = "w-1/2 flex mx-auto space-x-2";
+        card.innerHTML = "<input type='checkbox' class='accent-primary w-8 h-8 rounded-lg'>";
+        card.innerHTML += "<input type='text' placeholder='Todo' class='shadow border rounded w-full py-1 px-3 text-gray-500 leading-tight focus:outline-none'>";
+        document.getElementById("fruits").appendChild(card);
+        checks = document.querySelectorAll("input[type='checkbox']");
+        checks.forEach(function (box) {
+            box.addEventListener("change", function (e) {
+                update()
+            });
+        });
+    }
+    checks = document.querySelectorAll("input[type='checkbox']");
+    checks.forEach(function (box) {
+        console.log(box);
+        box.addEventListener("change", function (e) {
+            update()
+        });
+    });
+</script>
+</html>
